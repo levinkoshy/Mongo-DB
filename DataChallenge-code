@@ -1,0 +1,6 @@
+mongoimport --db csv_bahamas_leaks -c address --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/DataChallenge_SayariAnalytics/csv_bahamas_leaks.2017-12-19/bahamas_leaks.nodes.address.csv
+
+mongoimport --db csv_bahamas_leaks -c edges --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/DataChallenge_SayariAnalytics/csv_bahamas_leaks.2017-12-19/bahamas_leaks.edges.csv
+
+
+mongoimport --db csv_bahamas_leaks -c addresses --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/DataChallenge_SayariAnalytics/withgeocode.csv

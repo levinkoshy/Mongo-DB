@@ -1,0 +1,116 @@
+//to start mongodb server
+C:\Program Files\MongoDB\Server\3.6\bin>mongod
+show databases;
+
+//First document
+//Document insertion
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "isAlive": true,
+  "age": 27,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021-3100"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567"
+    },
+    {
+      "type": "mobile",
+      "number": "123 456-7890"
+    }
+  ],
+  "children": [],
+  "spouse": null
+}
+
+
+//NoSQL Manager
+//
+db.products.insert({name:'vivosmart',price:199})
+
+db.products.find({})
+
+db.products.find({name:'firetv'})
+
+//update
+db.products.update({price:199},{$set: {price:190}})
+
+db.products.remove({price:190})
+
+db.getCollection("primer-dataset").find({}).limit(5)
+
+
+//mongo import
+mongoimport --db Northwind -c territories --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/territories.csv
+mongoimport --db Northwind -c suppliers --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/suppliers.csv
+mongoimport --db Northwind -c shippers --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/shippers.csv
+mongoimport --db Northwind -c regions --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/regions.csv
+
+mongoimport --db Northwind -c products --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/products.csv
+mongoimport --db Northwind -c orders --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/orders.csv
+mongoimport --db Northwind -c order-details --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/order-details.csv
+mongoimport --db Northwind -c northwind --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/northwind.csv
+
+mongoimport --db Northwind -c employee-territories --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/employee-territories.csv
+mongoimport --db Northwind -c employees --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/employees.csv
+mongoimport --db Northwind -c customers --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/customers.csv
+mongoimport --db Northwind -c categories --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/northwind-mongo-master/categories.csv
+
+
+//www.generatedata.com
+mongoimport --db test_db_generateData -c person --type csv --headerline --file C:/Users/levi3/OneDrive/Documents/MongoDB/GenerateData/dataJan-21-2018.csv
+
+//import data using javascript
+//shell - RoboMongo
+for(i=0;i<10000;i++) {db.dummyCollectionNews.insert({title:"Tesla 3 Released",views:899997})}
+
+//MongoBooster-- open shell on the database
+db.regions.find({RegionDescription:"Northern"})
+
+db.regions.find({RegionDescription:"Northern",RegionID:1})
+
+db.regions.find({RegionDescription:"Northern",RegionID:3})
+
+//to filter out _id column
+{Query...},{Filter..}
+db.regions.find({RegionDescription:"Northern",RegionID:3},{_id:0})
+
+//filter out RegionID too from the result
+db.regions.find({RegionDescription:"Northern",RegionID:3},{_id:0,RegionID:0})
+
+//same result
+db.regions.find({RegionDescription:"Northern",RegionID:3},{_id:false,RegionID:0})
+
+db.regions.find().count()
+
+db.regions.find().limit(2)
+
+db.regions.find().skip(2)
+
+//sort desc, asc
+db.regions.find().sort({RegionID:-1})
+db.regions.find().sort({RegionID:1})
+
+//comparison operators
+db.products.find({UnitPrice:{$lt:100}})
+
+db.products.find({UnitPrice:{$gt:100}})
+
+db.products.find({UnitPrice:{$gt:50,$lt:100}})
+
+db.products.find({Discontinued:1})
+db.products.find({$and:[{Discontinued:1},{UnitPrice:{$gt:100}}]})
+
+db.products.find({$and:[{Discontinued:1},{UnitsInStock:{$eq:0}}]})
+
+db.products.find({UnitPrice:{$eq:123.79}})
